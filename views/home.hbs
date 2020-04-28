@@ -1,0 +1,40 @@
+<h1> Home </h1>
+<p>This is the {{ title }} page</p>
+  <div>
+    <form class="form-container1" id="message-input"> 
+          <input type="text" name="username" class="form-control" id="nickname" placeholder="Username" required />
+          <input type="text" name="password" class="form-control1" id="text" placeholder="Password" required />
+      <button type="submit" id="register-btn" class="goHomeButton">Register</button>
+      <button type="submit" id="login-btn" class="goHomeButton">Log In </button>
+
+    </form>
+</div>
+
+<script type="text/javascript">
+
+
+document.getElementById("register-btn").addEventListener('click', (event) => {
+  event.preventDefault()
+  let username = document.getElementById("nickname").value
+  let password = document.getElementById("text").value
+  let data = { username, password}
+  //fetch('/addUser', {method: 'POST', body: JSON.stringify(data),
+  //headers: { 'Content-type': 'application/json' }})
+  fetch('/signUp', {method: 'POST', body: JSON.stringify(data),
+  headers: { 'Content-type': 'application/json' }}).then(response => {
+    console.log(response);}
+    )
+})
+
+document.getElementById("login-btn").addEventListener('click', (event) => {
+  event.preventDefault()
+  let username = document.getElementById("nickname").value
+  let password = document.getElementById("text").value
+  let data = { username, password}
+  fetch('/login', {method: 'POST', body: JSON.stringify(data),
+  headers: { 'Content-type': 'application/json' }}).then(response => {
+    console.log(response);}
+    )
+})
+
+</script>
