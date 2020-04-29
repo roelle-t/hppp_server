@@ -9,9 +9,11 @@ const mongoose = require('mongoose');
 // import handlers
 const homeHandler = require('./controllers/home.js');
 const userHandler = require('./controllers/user.js');
+const notesHandler = require('./controllers/notes.js');
+
 
 const app = express();
-const port = 8080;
+const port = 80;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -49,7 +51,8 @@ app.post('/addUser', userHandler.addUser);
 app.post('/signUp', userHandler.signUp);
 app.post('/login', passport.authenticate('local'), userHandler.login);
 app.get('/logout', userHandler.logOut);
-
+app.get('/notes/json', notesHandler.getNotes);
+app.post('/postNote', notesHandler.addNote);
 
 // NOTE: This is the sample server.js code we provided, feel free to change the structures
 
